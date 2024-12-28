@@ -1,15 +1,16 @@
 package org.citruscircuits.scouting
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import kotlinx.serialization.Serializable
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.citruscircuits.scouting.data.Mode
 
-enum class Mode {
-    OBJ, SUBJ
-}
 
 @Serializable
 data class StartingPage(val match: Int, val mode: Mode)
@@ -17,12 +18,18 @@ data class StartingPage(val match: Int, val mode: Mode)
 
 @Composable
 
-fun StartingPage() {
-    MaterialTheme {
-        Scaffold {
-            Column() {
+fun StartingPage(startingPage: StartingPage, onNavigateAutoPage: () -> Unit) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(startingPage.match.toString())
 
-            }
+        Button(
+            onClick = onNavigateAutoPage
+        ) {
+            Text("To Auto")
         }
     }
 }
